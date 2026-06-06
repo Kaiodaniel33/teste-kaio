@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoopAgro PR - Futuro Sustentável</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header id="cabecalho">
+        <div class="container menu-navegacao">
+            <div class="logo-area">
+                <img src="assets/img/logo.png" alt="Logo CoopAgro PR" id="img-logo">
+                <h1>CoopAgro <span>PR</span></h1>
+            </div>
+
+            <button id="btn-menu-mobile">☰</button>
+
+            <nav id="menu-links">
+                <a href="#inicio">Início</a>
+                <a href="#tecnologias">Tecnologias</a>
+                <a href="#simulador" class="btn-destaque">Simulador</a>
+                
+                <button id="btn-modo-escuro">🌙 Escuro</button>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section id="inicio" class="secao-inicio">
+            <div class="container">
+                <h2>Tecnologia e Natureza no <br><span>Agronegócio Paranaense</span></h2>
+                <p>Um projeto desenvolvido para mostrar que é possível produzir mais alimentos enquanto preservamos a água e o solo do nosso estado.</p>
+                <br>
+                <a href="#simulador" class="btn-verde-grande">Testar o Simulador Agronômico</a>
+            </div>
+        </section>
+
+        <section id="tecnologias" class="secao-tecnologias">
+            <div class="container">
+                <h2 class="titulo-secao">Práticas Sustentáveis</h2>
+                <p class="subtitulo-secao">O que os agricultores estão fazendo para melhorar o campo:</p>
+
+                <div class="grid-cards">
+                    <div class="card">
+                        <div class="icone">🚜</div>
+                        <h3>Agricultura de Precisão</h3>
+                        <p>Uso de GPS e sensores para aplicar fertilizantes apenas onde a planta realmente precisa, evitando o desperdício.</p>
+                    </div>
+                    <div class="card">
+                        <div class="icone">🌱</div>
+                        <h3>Plantio Direto</h3>
+                        <p>Plantar a semente sobre a palhada seca da safra anterior. Isso protege a terra da chuva e mantém a umidade no solo.</p>
+                    </div>
+                    <div class="card">
+                        <div class="icone">💧</div>
+                        <h3>Irrigação Inteligente</h3>
+                        <p>Sistemas controlados por computador que só molham a lavoura na quantidade certa, economizando a nossa água doce.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="simulador" class="secao-simulador">
+            <div class="container">
+                <h2 class="titulo-secao">Simulador de Produtividade</h2>
+                <p class="subtitulo-secao">Preencha seus dados abaixo para ver como a tecnologia ajuda a sua fazenda.</p>
+
+                <div class="caixa-formulario">
+                    <form id="form-simulador">
+                        <div class="campo">
+                            <label for="nome">Qual é o seu nome completo?</label>
+                            <input type="text" id="nome" placeholder="Ex: Kaio Daniel da Costa" required>
+                        </div>
+
+                        <div class="campo">
+                            <label for="area">Tamanho da sua área (Hectares):</label>
+                            <input type="number" id="area" placeholder="Ex: 50" min="1" required>
+                        </div>
+
+                        <div class="campo">
+                            <label for="manejo">Selecione a tecnologia utilizada:</label>
+                            <select id="manejo" required>
+                                <option value="" disabled selected>Escolha uma opção...</option>
+                                <option value="convencional">1. Manejo Convencional (Aração antiga)</option>
+                                <option value="direto">2. Plantio Direto (Média tecnologia)</option>
+                                <option value="agro40">3. Agricultura 4.0 (Máxima tecnologia e Sensores)</option>
+                            </select>
+                        </div>
+
+                        <button type="submit" id="btn-calcular" class="btn-verde-grande">Gerar meu Relatório</button>
+                    </form>
+
+                    <div id="mensagem-carregando" class="escondido">
+                        <p>⏳ Aguarde... O sistema está calculando os dados da sua lavoura...</p>
+                    </div>
+
+                    <div id="resultado-relatorio" class="escondido">
+                        </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="rodape">
+        <div class="container grid-rodape">
+            <div class="rodape-esq">
+                <img src="assets/img/logo.png" alt="Logo CoopAgro" width="40">
+                <p><strong>CoopAgro PR</strong></p>
+                <p>Projeto Agrinho 2026 - Categoria Programação</p>
+            </div>
+            <div class="rodape-dir">
+                <p><strong>Desenvolvido por Kaio Daniel de Souza da Costa</strong></p>
+                <p>Técnico de Desenvolvimento de Sistemas</p>
+                <p>Colégio Estadual Professor Ivone Soares Castanharo</p>
+                <p>Núcleo Regional de Campo Mourão, Paraná</p>
+                <p>© 2026 Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
