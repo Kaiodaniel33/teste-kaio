@@ -32,7 +32,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ==========================================
-    // 3. LÓGICA DOS ÁUDIOS (Acessibilidade e Milton Santos)
+    // 3. LÓGICA DOS ÁUDIOS (Acessibilidade)
     // ==========================================
     const botoesOuvir = document.querySelectorAll('.btn-ouvir');
 
@@ -42,29 +42,21 @@ document.addEventListener('DOMContentLoaded', function() {
             const idAudio = botao.getAttribute('data-audio');
             const elementoAudio = document.getElementById(idAudio);
             
-            // Pausa todos os outros áudios para não tocar dois juntos
+            // Pausa TODOS os áudios para não tocar vozes misturadas
             document.querySelectorAll('audio').forEach(function(audio) {
+                audio.pause();
+                // Se não for o áudio que o usuário acabou de clicar, zera ele
                 if(audio.id !== idAudio) {
-                    audio.pause();
                     audio.currentTime = 0;
                 }
             });
 
-            // Restaura o texto de todos os botões para "Ouvir"
-            botoesOuvir.forEach(function(b) {
-                b.textContent = "🔊 Ouvir";
-            });
+            // O botão sempre vai ficar como "🔊 Ouvir" 
+            // Pega o áudio que o usuário clicou, zera o tempo para o início e toca
+            elementoAudio.currentTime = 0;
+            elementoAudio.play();
             
-            // Toca ou pausa o áudio atual
-            if (elementoAudio.paused) {
-                elementoAudio.play();
-                botao.textContent = "⏸️ Pausar";
-                console.log("Tocando áudio: " + idAudio);
-            } else {
-                elementoAudio.pause();
-                botao.textContent = "🔊 Ouvir";
-                console.log("Áudio pausado: " + idAudio);
-            }
+            console.log("Tocando áudio do início: " + idAudio);
         });
     });
 
