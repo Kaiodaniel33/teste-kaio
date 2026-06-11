@@ -1,4 +1,4 @@
-/* VARIÁVEIS DO SITE (Cores básicas de estudante) */
+/* VARIÁVEIS DO SITE */
 :root {
     --cor-fundo: #f4f6f4;
     --cor-caixas: #ffffff;
@@ -18,7 +18,6 @@ body.modo-escuro {
     --cor-borda: #444444;
 }
 
-/* ZERANDO MARGENS PADRÕES */
 * {
     margin: 0;
     padding: 0;
@@ -107,7 +106,7 @@ header {
 }
 
 #btn-menu-mobile {
-    display: none; /* Escondido no PC */
+    display: none; 
     background: none;
     border: none;
     font-size: 24px;
@@ -162,7 +161,7 @@ section {
 }
 
 .secao-inicio h2 {
-    font-size: 36px;
+    font-size: 32px;
     margin-bottom: 20px;
 }
 
@@ -258,7 +257,7 @@ section {
     font-size: 16px;
 }
 
-/* Esconde as coisas que o JS vai mexer */
+/* Esconde as divs pelo JS */
 .escondido {
     display: none;
 }
@@ -308,6 +307,10 @@ section {
 
 /* ================== RESPONSIVO (CELULAR) ================== */
 @media (max-width: 768px) {
+    .logo-area h1 {
+        font-size: 20px; /* Diminui a logo no celular pra caber os botões */
+    }
+
     .grid-cards {
         flex-direction: column;
     }
@@ -324,12 +327,10 @@ section {
         width: 100%;
     }
 
-    /* O botão sanduíche aparece */
     #btn-menu-mobile {
         display: block; 
     }
 
-    /* O menu normal vira uma lista vertical escondida */
     #menu-links {
         display: none; 
         flex-direction: column;
@@ -342,7 +343,6 @@ section {
         border-bottom: 2px solid var(--cor-verde-principal);
     }
 
-    /* Classe que o JS vai colocar para abrir o menu */
     #menu-links.mostrar-menu {
         display: flex; 
     }
