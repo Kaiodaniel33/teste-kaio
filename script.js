@@ -1,118 +1,132 @@
-// Aguarda o HTML carregar antes de rodar o código (Boa prática ensinada em aula)
+// Espera o HTML carregar antes de rodar os códigos
 document.addEventListener('DOMContentLoaded', function() {
-    console.log("Sistema CoopAgro PR Iniciado com Sucesso!");
+    console.log("Sistema CoopAgro PR Iniciado!");
 
     // ==========================================
-    // 1. LÓGICA DO MODO ESCURO (Melhoria de Usabilidade)
+    // 1. MODO ESCURO
     // ==========================================
     const botaoTema = document.getElementById('btn-modo-escuro');
     const corpoDaPagina = document.body;
 
     botaoTema.addEventListener('click', function() {
-        // A função toggle adiciona a classe se não tiver, ou tira se já tiver
         corpoDaPagina.classList.toggle('modo-escuro');
         
-        // Se a classe foi adicionada, altera o texto do botão
         if (corpoDaPagina.classList.contains('modo-escuro')) {
             botaoTema.textContent = "☀️ Claro";
-            console.log("Usuário ativou o Modo Escuro");
+            console.log("Modo Escuro ativado.");
         } else {
             botaoTema.textContent = "🌙 Escuro";
-            console.log("Usuário voltou para o Modo Claro");
+            console.log("Modo Claro ativado.");
         }
     });
 
     // ==========================================
-    // 2. LÓGICA DO MENU SANDUÍCHE (Mobile)
+    // 2. MENU SANDUÍCHE (Mobile)
     // ==========================================
     const botaoMenu = document.getElementById('btn-menu-mobile');
     const menuLinks = document.getElementById('menu-links');
 
     botaoMenu.addEventListener('click', function() {
         menuLinks.classList.toggle('mostrar-menu');
-        console.log("Menu sanduíche clicado.");
+        console.log("Clicou no botão do menu celular.");
     });
 
     // ==========================================
-    // 3. LÓGICA DO SIMULADOR (Matemática e Manipulação de DOM)
+    // 3. LÓGICA DOS ÁUDIOS (Acessibilidade)
     // ==========================================
-    // Pegando os elementos do HTML pelo ID
+    // Pega todos os botões que tem a classe btn-ouvir
+    const botoesOuvir = document.querySelectorAll('.btn-ouvir');
+
+    botoesOuvir.forEach(function(botao) {
+        botao.addEventListener('click', function() {
+            // Pega o ID do áudio que está guardado no "data-audio" do botão
+            const idAudio = botao.getAttribute('data-audio');
+            const elementoAudio = document.getElementById(idAudio);
+            
+            // Verifica se o áudio está pausado
+            if (elementoAudio.paused) {
+                elementoAudio.play();
+                botao.textContent = "⏸️ Pausar";
+                console.log("Tocando áudio: " + idAudio);
+            } else {
+                // Se já estiver tocando, a gente pausa
+                elementoAudio.pause();
+                botao.textContent = "🔊 Ouvir";
+                console.log("Áudio pausado: " + idAudio);
+            }
+        });
+    });
+
+    // ==========================================
+    // 4. SIMULADOR DE PRODUTIVIDADE
+    // ==========================================
     const formulario = document.getElementById('form-simulador');
     const campoNome = document.getElementById('nome');
     const campoArea = document.getElementById('area');
     const campoManejo = document.getElementById('manejo');
+    
     const divCarregando = document.getElementById('mensagem-carregando');
     const divResultado = document.getElementById('resultado-relatorio');
     const botaoCalcular = document.getElementById('btn-calcular');
 
-    // Função que é executada quando o usuário clica em "Gerar meu Relatório"
     formulario.addEventListener('submit', function(evento) {
-        // Evita que a página recarregue sozinha
-        evento.preventDefault();
-        console.log("Formulário enviado. Processando dados...");
+        evento.preventDefault(); // Não deixa a página recarregar
+        console.log("Calculando simulador...");
 
-        // Pegando os valores que o usuário digitou nas variáveis
         const nomeDigitado = campoNome.value;
         const areaDigitada = Number(campoArea.value);
         const manejoEscolhido = campoManejo.value;
 
-        // Esconder o botão e mostrar a mensagem de carregando
+        // Esconde botão e resultado, mostra mensagem de espera
         botaoCalcular.classList.add('escondido');
         divResultado.classList.add('escondido');
         divCarregando.classList.remove('escondido');
 
-        // Simulando um tempo de processamento de 2 segundos (2000 milissegundos)
+        // Um tempo de 2 segundos para fingir que está pensando muito
         setTimeout(function() {
             
-            // Variáveis que vão guardar os resultados do cálculo
             let sacasPorHectare = 0;
             let aguaEconomizadaPorHectare = 0;
             let diagnostico = "";
 
-            // Estrutura de decisão (IF / ELSE IF) baseada na tecnologia
             if (manejoEscolhido === "convencional") {
                 sacasPorHectare = 50;
                 aguaEconomizadaPorHectare = 0;
-                diagnostico = "Atenção: O solo precisa de mais proteção contra chuvas.";
+                diagnostico = "Atenção: O solo precisa de mais proteção contra chuvas e desgaste.";
             } 
             else if (manejoEscolhido === "direto") {
                 sacasPorHectare = 65;
                 aguaEconomizadaPorHectare = 12000;
-                diagnostico = "Bom: O plantio direto está protegendo o seu solo da erosão.";
+                diagnostico = "Bom: O plantio direto está protegendo o solo e retendo umidade.";
             } 
             else if (manejoEscolhido === "agro40") {
                 sacasPorHectare = 85;
                 aguaEconomizadaPorHectare = 35000;
-                diagnostico = "Excelente: A tecnologia está garantindo a máxima sustentabilidade!";
+                diagnostico = "Excelente: A tecnologia está garantindo máxima sustentabilidade e menor uso de água!";
             }
 
-            // Realizando a matemática final
             const totalDeSacas = areaDigitada * sacasPorHectare;
             const totalDeAgua = areaDigitada * aguaEconomizadaPorHectare;
 
-            console.log("Cálculo concluído para: " + nomeDigitado);
-            console.log("Sacas totais calculadas: " + totalDeSacas);
+            console.log("Sucesso! Relatório gerado para: " + nomeDigitado);
 
-            // Injetando o HTML dentro da divResultado
-            // Repare no "Olá, Nome" que é exigência da rubrica
+            // Colocando os textos no HTML pelo JS
             divResultado.innerHTML = `
                 <h3>Olá, ${nomeDigitado}!</h3>
-                <p>Aqui está a projeção para os seus <strong>${areaDigitada} hectares</strong>:</p>
+                <p>Aqui está a projeção sustentável para os seus <strong>${areaDigitada} hectares</strong>:</p>
                 <br>
-                <p>🌽 <strong>Colheita Total Estimada:</strong> ${totalDeSacas} sacas.</p>
-                <p>💧 <strong>Água Doce Preservada:</strong> ${totalDeAgua} Litros.</p>
-                <p>🌍 <strong>Diagnóstico:</strong> ${diagnostico}</p>
+                <p>🌽 <strong>Colheita Estimada:</strong> ${totalDeSacas} sacas totais.</p>
+                <p>💧 <strong>Água Preservada:</strong> ${totalDeAgua} Litros na irrigação.</p>
+                <p>🌍 <strong>Diagnóstico da Terra:</strong> ${diagnostico}</p>
             `;
 
-            // Mostra o resultado na tela e tira o carregando
             divCarregando.classList.add('escondido');
             divResultado.classList.remove('escondido');
             
-            // Volta o botão para o usuário poder testar de novo
             botaoCalcular.classList.remove('escondido');
-            botaoCalcular.textContent = "Calcular Novamente";
+            botaoCalcular.textContent = "Refazer Cálculo";
 
-        }, 2000); // Fim do setTimeout
+        }, 2000);
     });
 
-}); // Fim do carregamento do documento
+});
