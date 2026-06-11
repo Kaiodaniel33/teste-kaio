@@ -14,19 +14,20 @@
 
     <header id="cabecalho">
         <div class="container menu-navegacao">
+            
             <div class="logo-area">
-                <img src="assets/img/logo.png" alt="Logo CoopAgro PR" id="img-logo">
                 <h1>CoopAgro <span>PR</span></h1>
             </div>
 
-            <button id="btn-menu-mobile">☰</button>
+            <div class="controles-topo">
+                <button id="btn-modo-escuro">🌙 Escuro</button>
+                <button id="btn-menu-mobile">☰</button>
+            </div>
 
             <nav id="menu-links">
                 <a href="#inicio">Início</a>
-                <a href="#tecnologias">Tecnologias</a>
+                <a href="#tecnologias">Práticas</a>
                 <a href="#simulador" class="btn-destaque">Simulador</a>
-                
-                <button id="btn-modo-escuro">🌙 Escuro</button>
             </nav>
         </div>
     </header>
@@ -35,7 +36,7 @@
         <section id="inicio" class="secao-inicio">
             <div class="container">
                 <h2>Tecnologia e Natureza no <br><span>Agronegócio Paranaense</span></h2>
-                <p>Um projeto desenvolvido para mostrar que é possível produzir mais alimentos enquanto preservamos a água e o solo do nosso estado.</p>
+                <p>Um projeto desenvolvido para mostrar que é possível produzir mais alimentos enquanto preservamos a água e o solo do nosso estado, aliando ciência e campo.</p>
                 <br>
                 <a href="#simulador" class="btn-verde-grande">Testar o Simulador Agronômico</a>
             </div>
@@ -44,23 +45,40 @@
         <section id="tecnologias" class="secao-tecnologias">
             <div class="container">
                 <h2 class="titulo-secao">Práticas Sustentáveis</h2>
-                <p class="subtitulo-secao">O que os agricultores estão fazendo para melhorar o campo:</p>
+                <p class="subtitulo-secao">A tecnologia transformando o espaço geográfico agrícola:</p>
 
                 <div class="grid-cards">
                     <div class="card">
-                        <div class="icone">🚜</div>
-                        <h3>Agricultura de Precisão</h3>
-                        <p>Uso de GPS e sensores para aplicar fertilizantes apenas onde a planta realmente precisa, evitando o desperdício.</p>
+                        <div class="cabecalho-card">
+                            <h3>Agricultura de Precisão</h3>
+                            <button class="btn-ouvir" data-audio="audio-precisao">🔊 Ouvir</button>
+                            <audio id="audio-precisao" src="assets/audio/precisao.mp3"></audio>
+                        </div>
+                        <p class="texto-geografia">
+                            Segundo o geógrafo Milton Santos, o espaço é formado por um sistema de objetos e ações. A agricultura de precisão transforma o campo em um verdadeiro "meio técnico-científico-informacional". Com o uso de dados de satélites e sensores, o produtor entende as necessidades exatas de cada pedaço de terra. Essa tecnologia otimiza o uso de adubos e sementes, guiando as ações humanas para reduzir os impactos na natureza e aumentar a produtividade.
+                        </p>
                     </div>
+
                     <div class="card">
-                        <div class="icone">🌱</div>
-                        <h3>Plantio Direto</h3>
-                        <p>Plantar a semente sobre a palhada seca da safra anterior. Isso protege a terra da chuva e mantém a umidade no solo.</p>
+                        <div class="cabecalho-card">
+                            <h3>Plantio Direto</h3>
+                            <button class="btn-ouvir" data-audio="audio-direto">🔊 Ouvir</button>
+                            <audio id="audio-direto" src="assets/audio/direto.mp3"></audio>
+                        </div>
+                        <p class="texto-geografia">
+                            Milton Santos nos ensina que a técnica muda a nossa relação com o meio ambiente. O plantio direto é a técnica perfeita de adaptação para proteger o solo. Ao invés de revirar a terra com arados, o agricultor planta sobre a palhada seca da colheita anterior. Essa camada orgânica funciona como um escudo natural contra as chuvas fortes, evitando a erosão e mantendo a umidade vital para a semente crescer forte em harmonia com o ecossistema local.
+                        </p>
                     </div>
+
                     <div class="card">
-                        <div class="icone">💧</div>
-                        <h3>Irrigação Inteligente</h3>
-                        <p>Sistemas controlados por computador que só molham a lavoura na quantidade certa, economizando a nossa água doce.</p>
+                        <div class="cabecalho-card">
+                            <h3>Irrigação Inteligente</h3>
+                            <button class="btn-ouvir" data-audio="audio-irrigacao">🔊 Ouvir</button>
+                            <audio id="audio-irrigacao" src="assets/audio/irrigacao.mp3"></audio>
+                        </div>
+                        <p class="texto-geografia">
+                            A racionalidade no uso dos recursos é uma marca do avanço científico citado por Milton Santos. A irrigação inteligente representa essa evolução na gestão da água doce. Sistemas computadorizados calculam o clima, a evaporação e a umidade do solo, entregando para a planta apenas a gota de água necessária no momento exato. Isso garante a produção contínua de alimentos sem esgotar as nossas preciosas bacias hidrográficas.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -69,7 +87,7 @@
         <section id="simulador" class="secao-simulador">
             <div class="container">
                 <h2 class="titulo-secao">Simulador de Produtividade</h2>
-                <p class="subtitulo-secao">Preencha seus dados abaixo para ver como a tecnologia ajuda a sua fazenda.</p>
+                <p class="subtitulo-secao"><strong>Para que serve este simulador?</strong><br> Ele foi criado para provar, com números, que investir em sustentabilidade traz retorno real. Basta preencher seus dados abaixo, colocar o tamanho da sua área e escolher uma técnica para ver como a sua escolha afeta a colheita e o meio ambiente!</p>
 
                 <div class="caixa-formulario">
                     <form id="form-simulador">
@@ -97,7 +115,7 @@
                     </form>
 
                     <div id="mensagem-carregando" class="escondido">
-                        <p>⏳ Aguarde... O sistema está calculando os dados da sua lavoura...</p>
+                        <p>⏳ Aguarde... O sistema está processando as informações...</p>
                     </div>
 
                     <div id="resultado-relatorio" class="escondido">
@@ -110,16 +128,14 @@
     <footer id="rodape">
         <div class="container grid-rodape">
             <div class="rodape-esq">
-                <img src="assets/img/logo.png" alt="Logo CoopAgro" width="40">
                 <p><strong>CoopAgro PR</strong></p>
                 <p>Projeto Agrinho 2026 - Categoria Programação</p>
             </div>
             <div class="rodape-dir">
                 <p><strong>Desenvolvido por Kaio Daniel de Souza da Costa</strong></p>
-                <p>Técnico de Desenvolvimento de Sistemas</p>
                 <p>Colégio Estadual Professor Ivone Soares Castanharo</p>
                 <p>Núcleo Regional de Campo Mourão, Paraná</p>
-                <p>© 2026 Todos os direitos reservados.</p>
+                <p>© 2026 CoopAgro PR</p>
             </div>
         </div>
     </footer>
