@@ -1,4 +1,4 @@
-/* VARIÁVEIS DO SITE (Para facilitar a troca de cores) */
+/* VARIÁVEIS DO SITE (Cores básicas de estudante) */
 :root {
     --cor-fundo: #f4f6f4;
     --cor-caixas: #ffffff;
@@ -8,7 +8,7 @@
     --cor-borda: #cccccc;
 }
 
-/* MODO ESCURO (Alterado pelo JavaScript) */
+/* MODO ESCURO */
 body.modo-escuro {
     --cor-fundo: #121212;
     --cor-caixas: #1e1e1e;
@@ -58,19 +58,19 @@ header {
     height: 70px;
 }
 
-.logo-area {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
 .logo-area h1 {
-    font-size: 20px;
+    font-size: 24px;
     color: var(--cor-texto);
 }
 
 .logo-area h1 span {
     color: var(--cor-verde-principal);
+}
+
+.controles-topo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
 }
 
 #menu-links {
@@ -100,14 +100,14 @@ header {
     background-color: var(--cor-fundo);
     color: var(--cor-texto);
     border: 1px solid var(--cor-borda);
-    padding: 5px 10px;
+    padding: 8px 12px;
     border-radius: 5px;
     cursor: pointer;
     font-weight: bold;
 }
 
 #btn-menu-mobile {
-    display: none; /* Esconde no computador */
+    display: none; /* Escondido no PC */
     background: none;
     border: none;
     font-size: 24px;
@@ -130,6 +130,7 @@ section {
 .subtitulo-secao {
     text-align: center;
     margin-bottom: 40px;
+    line-height: 1.5;
 }
 
 .btn-verde-grande {
@@ -169,7 +170,7 @@ section {
     color: var(--cor-verde-principal);
 }
 
-/* ================== TECNOLOGIAS (CARDS) ================== */
+/* ================== TECNOLOGIAS (CARDS TEXTO E ÁUDIO) ================== */
 .grid-cards {
     display: flex;
     gap: 20px;
@@ -178,11 +179,12 @@ section {
 .card {
     background-color: var(--cor-caixas);
     border: 1px solid var(--cor-borda);
-    padding: 30px;
+    padding: 25px;
     border-radius: 8px;
-    text-align: center;
     width: 33%;
-    transition: transform 0.2s; /* Animação simples exigida na rubrica */
+    transition: transform 0.2s;
+    display: flex;
+    flex-direction: column;
 }
 
 .card:hover {
@@ -190,14 +192,40 @@ section {
     border-color: var(--cor-verde-principal);
 }
 
-.icone {
-    font-size: 40px;
+.cabecalho-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
     margin-bottom: 15px;
+    border-bottom: 1px solid var(--cor-borda);
+    padding-bottom: 10px;
 }
 
 .card h3 {
     color: var(--cor-verde-principal);
-    margin-bottom: 10px;
+    font-size: 18px;
+}
+
+.btn-ouvir {
+    background-color: var(--cor-fundo);
+    border: 1px solid var(--cor-borda);
+    color: var(--cor-texto);
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.btn-ouvir:hover {
+    background-color: var(--cor-verde-principal);
+    color: white;
+}
+
+.texto-geografia {
+    font-size: 15px;
+    line-height: 1.6;
+    text-align: justify;
 }
 
 /* ================== SIMULADOR ================== */
@@ -230,7 +258,7 @@ section {
     font-size: 16px;
 }
 
-/* Classes para o JavaScript usar */
+/* Esconde as coisas que o JS vai mexer */
 .escondido {
     display: none;
 }
@@ -281,7 +309,7 @@ section {
 /* ================== RESPONSIVO (CELULAR) ================== */
 @media (max-width: 768px) {
     .grid-cards {
-        flex-direction: column; /* Coloca um card em baixo do outro */
+        flex-direction: column;
     }
     .card {
         width: 100%;
@@ -296,13 +324,14 @@ section {
         width: 100%;
     }
 
-    /* Menu Sanduíche */
+    /* O botão sanduíche aparece */
     #btn-menu-mobile {
-        display: block; /* Mostra o botão no celular */
+        display: block; 
     }
 
+    /* O menu normal vira uma lista vertical escondida */
     #menu-links {
-        display: none; /* Esconde o menu normal */
+        display: none; 
         flex-direction: column;
         position: absolute;
         top: 70px;
@@ -313,7 +342,8 @@ section {
         border-bottom: 2px solid var(--cor-verde-principal);
     }
 
+    /* Classe que o JS vai colocar para abrir o menu */
     #menu-links.mostrar-menu {
-        display: flex; /* Classe que o JS vai adicionar */
+        display: flex; 
     }
 }
