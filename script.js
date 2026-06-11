@@ -32,9 +32,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ==========================================
-    // 3. LÓGICA DOS ÁUDIOS (Acessibilidade)
+    // 3. LÓGICA DOS ÁUDIOS (Acessibilidade e Milton Santos)
     // ==========================================
-    // Pega todos os botões que tem a classe btn-ouvir
     const botoesOuvir = document.querySelectorAll('.btn-ouvir');
 
     botoesOuvir.forEach(function(botao) {
@@ -43,13 +42,25 @@ document.addEventListener('DOMContentLoaded', function() {
             const idAudio = botao.getAttribute('data-audio');
             const elementoAudio = document.getElementById(idAudio);
             
-            // Verifica se o áudio está pausado
+            // Pausa todos os outros áudios para não tocar dois juntos
+            document.querySelectorAll('audio').forEach(function(audio) {
+                if(audio.id !== idAudio) {
+                    audio.pause();
+                    audio.currentTime = 0;
+                }
+            });
+
+            // Restaura o texto de todos os botões para "Ouvir"
+            botoesOuvir.forEach(function(b) {
+                b.textContent = "🔊 Ouvir";
+            });
+            
+            // Toca ou pausa o áudio atual
             if (elementoAudio.paused) {
                 elementoAudio.play();
                 botao.textContent = "⏸️ Pausar";
                 console.log("Tocando áudio: " + idAudio);
             } else {
-                // Se já estiver tocando, a gente pausa
                 elementoAudio.pause();
                 botao.textContent = "🔊 Ouvir";
                 console.log("Áudio pausado: " + idAudio);
@@ -58,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // ==========================================
-    // 4. SIMULADOR DE PRODUTIVIDADE
+    // 4. SIMULADOR DE PRODUTIVIDADE E MEIO AMBIENTE
     // ==========================================
     const formulario = document.getElementById('form-simulador');
     const campoNome = document.getElementById('nome');
@@ -70,54 +81,54 @@ document.addEventListener('DOMContentLoaded', function() {
     const botaoCalcular = document.getElementById('btn-calcular');
 
     formulario.addEventListener('submit', function(evento) {
-        evento.preventDefault(); // Não deixa a página recarregar
-        console.log("Calculando simulador...");
+        evento.preventDefault(); 
+        console.log("Iniciando cálculos do simulador...");
 
         const nomeDigitado = campoNome.value;
         const areaDigitada = Number(campoArea.value);
         const manejoEscolhido = campoManejo.value;
 
-        // Esconde botão e resultado, mostra mensagem de espera
         botaoCalcular.classList.add('escondido');
         divResultado.classList.add('escondido');
         divCarregando.classList.remove('escondido');
 
-        // Um tempo de 2 segundos para fingir que está pensando muito
+        // Tempo para simular carregamento de dados (2 segundos)
         setTimeout(function() {
             
             let sacasPorHectare = 0;
             let aguaEconomizadaPorHectare = 0;
             let diagnostico = "";
 
+            // Ligação do simulador com a teoria escrita nos cards acima
             if (manejoEscolhido === "convencional") {
                 sacasPorHectare = 50;
                 aguaEconomizadaPorHectare = 0;
-                diagnostico = "Atenção: O solo precisa de mais proteção contra chuvas e desgaste.";
+                diagnostico = "Atenção: Seguindo técnicas antigas, seu solo fica exposto. Risco de perda de nutrientes.";
             } 
             else if (manejoEscolhido === "direto") {
                 sacasPorHectare = 65;
                 aguaEconomizadaPorHectare = 12000;
-                diagnostico = "Bom: O plantio direto está protegendo o solo e retendo umidade.";
+                diagnostico = "Bom trabalho: O plantio direto usa a palhada como escudo, protegendo o solo e retendo umidade.";
             } 
             else if (manejoEscolhido === "agro40") {
                 sacasPorHectare = 85;
                 aguaEconomizadaPorHectare = 35000;
-                diagnostico = "Excelente: A tecnologia está garantindo máxima sustentabilidade e menor uso de água!";
+                diagnostico = "Excelente! A era técnico-científica-informacional garante máxima produção e grande economia de água!";
             }
 
             const totalDeSacas = areaDigitada * sacasPorHectare;
             const totalDeAgua = areaDigitada * aguaEconomizadaPorHectare;
 
-            console.log("Sucesso! Relatório gerado para: " + nomeDigitado);
+            console.log("Relatório gerado com sucesso para: " + nomeDigitado);
 
-            // Colocando os textos no HTML pelo JS
+            // Injetando o HTML dentro da divResultado
             divResultado.innerHTML = `
                 <h3>Olá, ${nomeDigitado}!</h3>
-                <p>Aqui está a projeção sustentável para os seus <strong>${areaDigitada} hectares</strong>:</p>
+                <p>Aqui está a projeção técnica para os seus <strong>${areaDigitada} hectares</strong>:</p>
                 <br>
-                <p>🌽 <strong>Colheita Estimada:</strong> ${totalDeSacas} sacas totais.</p>
-                <p>💧 <strong>Água Preservada:</strong> ${totalDeAgua} Litros na irrigação.</p>
-                <p>🌍 <strong>Diagnóstico da Terra:</strong> ${diagnostico}</p>
+                <p>🌽 <strong>Colheita Total Estimada:</strong> ${totalDeSacas} sacas.</p>
+                <p>💧 <strong>Água Doce Preservada:</strong> ${totalDeAgua} Litros.</p>
+                <p>🌍 <strong>Diagnóstico:</strong> ${diagnostico}</p>
             `;
 
             divCarregando.classList.add('escondido');
